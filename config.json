@@ -1,0 +1,11 @@
+{
+    "input_folder": "input",
+    "output_folder": "output",
+    "output_filename": "formatted_report.xlsx",
+    "sort_by": ["Time", "Class", "Zone"],
+    "trainer_colours": ["ffffff", "42a7f5"],
+    "columns_needed": [
+        "Class", "Day", "Time", "Zone",
+        "Class Trainer", "Member ID", "First Name", "Last Name"
+    ]
+}
