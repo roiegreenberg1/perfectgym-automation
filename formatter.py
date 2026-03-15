@@ -9,10 +9,16 @@ def format_report(report_path, config):
 
     # Filters out the columns not required and then custom sorts the remaining rows
     data_frame = data_frame[config["columns_needed"]]
+    
+    # Ensures time column is sorted by datetime values, not strings
+    data_frame["Time"] = pd.to_datetime(data_frame["Time"], format="%I:%M%p")
+
     data_frame = data_frame.sort_values(
-        by=["Time", "Class", "Zone"],
-        ascending=[True, True, True]
+        by=config["sort_by"],
+        ascending=[True] * len(config["sort_by"])
     )
+
+    data_frame["Time"] = data_frame["Time"].dt.strftime("%I:%M%p")
 
     # Creates a new .xlsx file and adds data from the data frame
     output_folder = config["output_folder"]
@@ -32,23 +38,19 @@ def format_report(report_path, config):
 def apply_styling(worksheet, config):
 
     column_widths = {
-        "A": 15,  # Class
-        "B": 12,  # Day
-        "C": 12,  # Time
-        "D": 10,  # Zone
-        "E": 20,  # Class Trainer
-        "F": 15,  # Member ID
-        "G": 15,  # First Name
-        "H": 15,  # Last Name
+        "A": 20,  # Class
+        "B": 11,  # Day
+        "C": 9,  # Time
+        "D": 18,  # Zone
+        "E": 16,  # Class Trainer
+        "F": 18,  # Student User Number
+        "G": 15,  # Student Name
+        "H": 15,  # Student Surname
     }
 
     # Changes the width of each column to match the correct sizing of its header
     for column, width in column_widths.items():
         worksheet.column_dimensions[column].width = width
-
-    # Applies a bold styling to the cells in the first row (header row)
-    for cell in worksheet[1]:
-        cell.font = Font(bold = True)
 
     # Defines the border styling
     thin = Side(border_style = "thin", color = "000000")
@@ -68,8 +70,12 @@ def apply_styling(worksheet, config):
 
     # Fills in the rows with alternating colours, switching when the trainer changes
     colours = config["trainer_colours"]
-    colour_index = 0
+    colour_index = 1
     prev_trainer = None
+
+    # Applies a light grey fill to the cells in the first row (header row)
+    for cell in worksheet[1]:
+        cell.fill = PatternFill(patternType = "solid", fgColor = colours[2])
 
     for row in worksheet.iter_rows(min_row = 2):
         trainer_curr = row[column_index].value

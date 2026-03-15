@@ -3,9 +3,15 @@
     "output_folder": "output",
     "output_filename": "formatted_report.xlsx",
     "sort_by": ["Time", "Class", "Zone"],
-    "trainer_colours": ["ffffff", "42a7f5"],
+    "trainer_colours": ["ffffff", "A6C9EC", "d3d3d3"],
     "columns_needed": [
-        "Class", "Day", "Time", "Zone",
-        "Class Trainer", "Member ID", "First Name", "Last Name"
+        "Class", 
+        "Day", 
+        "Time", 
+        "Zone",
+        "Class Trainer", 
+        "Student User Number", 
+        "Student Name", 
+        "Student Surname"
     ]
 }
