@@ -54,7 +54,7 @@ class App(TkinterDnD.Tk if DND_AVAILABLE else tk.Tk):
 
     def _build_ui(self):
 
-        # ── Header ────────────────────────────────────────────────────────────
+        # Header
         header = tk.Frame(self, bg="#ffffff", height=200)
         header.pack(fill="x")
         header.pack_propagate(False)
@@ -75,10 +75,10 @@ class App(TkinterDnD.Tk if DND_AVAILABLE else tk.Tk):
             bg="#ffffff", fg="#1a2e4a"
         ).pack(side="left")
 
-        # ── Navy divider ──────────────────────────────────────────────────────
+        # Top divider
         tk.Frame(self, bg="#1a2e4a", height=3).pack(fill="x")
 
-        # ── Main content ──────────────────────────────────────────────────────
+        # Main content
         content = tk.Frame(self, bg="#ffffff")
         content.pack(fill="both", expand=True, padx=50, pady=30)
 
@@ -91,14 +91,14 @@ class App(TkinterDnD.Tk if DND_AVAILABLE else tk.Tk):
 
         tk.Label(
             content,
-            text="Select or drop your unformatted .xlsx file below, then click Format Report.",
+            text="Select or drop your unformatted .xlsx file below, then click 'Format Report'.",
             font=("Segoe UI", 10),
             bg="#ffffff", fg="#888888",
             wraplength=750,
             justify="left"
         ).pack(anchor="w", pady=(6, 20))
 
-        # ── Drop zone ─────────────────────────────────────────────────────────
+        # File drop zone
         self.drop_frame = tk.Frame(
             content, bg="#f8fafc",
             highlightbackground="#c8d8e8",
@@ -130,7 +130,7 @@ class App(TkinterDnD.Tk if DND_AVAILABLE else tk.Tk):
             self.drop_frame.drop_target_register(DND_FILES)
             self.drop_frame.dnd_bind("<<Drop>>", self._on_drop)
 
-        # ── Format button ─────────────────────────────────────────────────────
+        # Format button
         self.format_btn = tk.Button(
             content,
             text="Format Report",
@@ -144,7 +144,7 @@ class App(TkinterDnD.Tk if DND_AVAILABLE else tk.Tk):
         )
         self.format_btn.pack(fill="x", pady=(28, 0))
 
-        # ── Status label ──────────────────────────────────────────────────────
+        # Status label
         self.status_label = tk.Label(
             content, text="",
             font=("Segoe UI", 10),
