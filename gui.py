@@ -22,11 +22,11 @@ class App(TkinterDnD.Tk if DND_AVAILABLE else tk.Tk):
 
     def __init__(self):
         super().__init__()
-        self.title("PGM Report Formatting Tool")
+        self.title("LTS Afternoon Sheets Formatting Tool")
         self.resizable(False, False)
         self.configure(bg="#ffffff")
 
-        width, height = 900, 1200
+        width, height = 1100, 900
         screen_w = self.winfo_screenwidth()
         screen_h = self.winfo_screenheight()
         x = (screen_w - width) // 2
@@ -44,7 +44,7 @@ class App(TkinterDnD.Tk if DND_AVAILABLE else tk.Tk):
             try:
                 from PIL import Image, ImageTk
                 img = Image.open(logo_path)
-                target_h = 70
+                target_h = 150
                 ratio = target_h / img.height
                 target_w = int(img.width * ratio)
                 img = img.resize((target_w, target_h), Image.LANCZOS)
@@ -55,7 +55,7 @@ class App(TkinterDnD.Tk if DND_AVAILABLE else tk.Tk):
     def _build_ui(self):
 
         # ── Header ────────────────────────────────────────────────────────────
-        header = tk.Frame(self, bg="#ffffff", height=100)
+        header = tk.Frame(self, bg="#ffffff", height=200)
         header.pack(fill="x")
         header.pack_propagate(False)
 
@@ -66,12 +66,12 @@ class App(TkinterDnD.Tk if DND_AVAILABLE else tk.Tk):
             tk.Label(
                 header_inner, image=self.logo_image,
                 bg="#ffffff"
-            ).pack(side="left", padx=(0, 20))
+            ).pack(side="left", padx=(0, 30))
 
         tk.Label(
             header_inner,
-            text="PGM Report Formatting Tool",
-            font=("Segoe UI", 20, "bold"),
+            text="LTS Afternoon Sheets Formatting Tool",
+            font=("Segoe UI", 16, "bold"),
             bg="#ffffff", fg="#1a2e4a"
         ).pack(side="left")
 
@@ -84,7 +84,7 @@ class App(TkinterDnD.Tk if DND_AVAILABLE else tk.Tk):
 
         tk.Label(
             content,
-            text="Group Enrollment Report",
+            text="Group Enrollment Details",
             font=("Segoe UI", 14, "bold"),
             bg="#ffffff", fg="#1a2e4a"
         ).pack(anchor="w")

@@ -41,12 +41,12 @@ def apply_styling(worksheet, config):
     column_widths = {
         "A": 20,  # Class
         "B": 11,  # Day
-        "C": 9,  # Time
+        "C": 8,  # Time
         "D": 18,  # Zone
         "E": 16,  # Class Trainer
-        "F": 18,  # Student User Number
-        "G": 15,  # Student Name
-        "H": 15,  # Student Surname
+        "F": 19,  # Student User Number
+        "G": 14,  # Student Name
+        "H": 16,  # Student Surname
     }
 
     # Changes the width of each column to match the correct sizing of its header
