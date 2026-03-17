@@ -11,7 +11,7 @@ def format_report(report_path, config):
     data_frame = data_frame[config["columns_needed"]]
     
     # Ensures time column is sorted by datetime values, not strings
-    data_frame["Time"] = pd.to_datetime(data_frame["Time"], format="%I:%M%p")
+    data_frame["Time"] = pd.to_datetime(data_frame["Time"], format="mixed")
 
     data_frame = data_frame.sort_values(
         by=config["sort_by"],
@@ -34,6 +34,7 @@ def format_report(report_path, config):
     worksheet.page_setup.orientation = worksheet.ORIENTATION_LANDSCAPE
 
     workbook.save(output_file)
+    return output_file
 
 def apply_styling(worksheet, config):
 
